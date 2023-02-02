@@ -5,7 +5,19 @@
       <div class="bg-danger-subtle p-4 text-center rounded">
         <h1>List your jobs</h1>
         <p class="lead w-50 m-auto mb-3">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+        <div class="filter-search w-50 m-auto">
+          <!-- Job Filter From -->
+          <form action="index.php" method="GET">
+          <label for="cat_select" class="form-label fw-bold">Filter By Category</label>
+            <select class="cat-select form-select" onchange="this.form.submit()">
+              <option value="0" selected>Choose Category</option>
+              <?php foreach( $categories as $key => $list ): ?>
+                <option value="<?php echo $list->cat_id; ?>"><?php echo $list->cat_name; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </form>      
+          
+        </div>
       </div>
 
       <div class="row marketing align-items-center justify-content-center pt-5">
