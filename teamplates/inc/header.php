@@ -41,3 +41,5 @@
     </nav>
   </div>
 </header>
+
+<?php displayMessages(); ?>

@@ -11,7 +11,7 @@ class Job{
 
     // Get all jobs
     public function getAllJobs(){
-        $this->db->query("SELECT job_list.* FROM job_list INNER JOIN category ON job_list.job_id = category.cat_id");
+        $this->db->query("SELECT job_list.* FROM job_list INNER JOIN category ON job_list.cat_id = category.cat_id");
 
         //Asign Results
         $results = $this->db->resultSet();
@@ -29,7 +29,7 @@ class Job{
     }
 
     public function getByCategory( $category ){
-        $this->db->query("SELECT job_list.* FROM job_list INNER JOIN category ON job_list.job_id = category.cat_id WHERE job_list.cat_id = $category ");
+        $this->db->query("SELECT job_list.* FROM job_list INNER JOIN category ON category.cat_id = job_list.job_id WHERE job_list.cat_id = $category ");
 
         $res =  $this->db->resultSet();
 
@@ -61,7 +61,8 @@ class Job{
     public function create( $data ){
         
         // insert query
-        $this->db->query("INSERT INTO `job_list` ( `cat_id`, `company_name`, `job_title`, `job_desc`, `job_salery`, `job_location`, `user_contact`, `email_contact`) VALUES (:cat_id, :company_name, :job_title, :job_desc, :job_salery, :job_location, :user_contact, :email_contact') ");
+        $this->db->query("INSERT INTO `job_list` ( `cat_id`, `company_name`, `job_title`, `job_desc`, `job_salery`, `job_location`, `user_contact`, `email_contact`) VALUES (:cat_id, :company_name, :job_title, :job_desc, :job_salery, :job_location, :user_contact, :email_contact) ");
+
 
         // bind data
         $this->db->bind(':cat_id', $data['job_category']);
@@ -78,6 +79,23 @@ class Job{
             return true;
         }
         else{
+            return false;
+        }
+    }
+
+    // Delete job
+    public function delete( $id ){
+        
+        // insert query
+        $this->db->query("DELETE FROM job_list WHERE job_list.job_id = :job_id ");
+
+        // Bind the value
+        $this->db->bind(':job_id', $id );
+
+        // execute the query
+        if( $this->db->execute() ){
+            return true;
+        }else{
             return false;
         }
     }

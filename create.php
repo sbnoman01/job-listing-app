@@ -24,7 +24,6 @@ if( isset( $_REQUEST['create_new_job'] ) ){
 
 
 $template->categories = $job->getCategories();
-$template->data = $ss;
 
 echo $template;
 

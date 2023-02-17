@@ -3,7 +3,6 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 offset-2">
-            <?php echo $data; ?>
                 <form>
                     <div class="mb-3">
                         <label for="company_name" class="form-label">Company name</label>

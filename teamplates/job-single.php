@@ -11,8 +11,16 @@
 				<h3 class="border-bottom pb-2">Job Name: <?= $job_single->job_title ?></h3>
 				<div class="row">
 					<div class="col-md-8">
-						<div class="job-description pt-2 border-right">
-							<p><?= $job_single->job_desc ?></p>
+						<div class="job-description pt-2 border-right border-bottom">
+							<p ><?= $job_single->job_desc ?></p>
+						</div>
+						<div class="single-actions pt-2">
+							<a href="edit.php?id=<?= $job_single->job_id; ?>" class="btn btn-primary">Edit</a>
+
+							<form action="job.php" method="post" class="d-inline">
+								<input type="hidden" name="job_id" value="<?= $job_single->job_id; ?>">
+								<input type="submit" name="delete_job" class="btn btn-danger" value="Delete">
+							</form>
 						</div>
 					</div>
 					<div class="col-md-4">
