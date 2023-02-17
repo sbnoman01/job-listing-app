@@ -99,4 +99,40 @@ class Job{
             return false;
         }
     }
+
+    public function update($job_id, $data ){
+        
+        // insert query
+        $this->db->query("UPDATE `job_list` SET 
+            `cat_id` = :cat_id,
+            `company_name` = :company_name,
+            `job_title` = :job_title,
+            `job_desc` = :job_desc,
+            `job_salery` = :job_salery,
+            `job_location` = :job_location,
+            `user_contact` = :user_contact,
+            `email_contact` = :email_contact
+            WHERE `job_list`.`job_id` = :job_id");
+
+
+
+        // bind data
+        $this->db->bind(':job_id', $job_id );
+        $this->db->bind(':cat_id', $data['job_category']);
+        $this->db->bind(':company_name', $data['company_name']);
+        $this->db->bind(':job_title', $data['job_title']);
+        $this->db->bind(':job_desc', $data['job_description']);
+        $this->db->bind(':job_salery', $data['job_salery']);
+        $this->db->bind(':job_location', $data['job_location']);
+        $this->db->bind(':user_contact', $data['job_contact_mobile']);
+        $this->db->bind(':email_contact', $data['job_contact_email']);
+
+        // execude
+        if( $this->db->execute() ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
